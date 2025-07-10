@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Forum (Fixed)</title></head>
+<body>
+  <h2>Welcome, {{ username }}</h2>
+  <a href="/logout">Logout</a>
+  <a href="/view">View Changelog</a>
+
+  <form method="POST">
+    <input name="content" placeholder="Say something...">
+    <button type="submit">Post</button>
+  </form>
+
+  <hr>
+  <h3>Posts:</h3>
+  {% for username, content, timestamp in posts %}
+    <div style="margin-bottom: 1em;">
+      <b>{{ username }}</b> at {{ timestamp }}<br>
+      {{ content }}
+    </div>
+  {% endfor %}
+</body>
+</html>
