@@ -2,8 +2,9 @@ import os
 
 
 class Config:
-    SECRET_KEY = os.environ.get("SECRET_KEY", "devkey")
+    SECRET_KEY = os.urandom(32)
     DATABASE = os.path.join(os.getcwd(), "app", "db.sqlite3")
+    UPLOAD_FOLDER = "static/uploads"
 
 
 class VulnConfig(Config):

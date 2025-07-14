@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Drafts</title>
+</head>
+<body>
+    <h2>Drafts for {{ username | e }}</h2>
+    <a href="/forum">Back to Forum</a>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <textarea name="draft_content" placeholder="Write your draft..."></textarea><br>
+        <input type="file" name="file" accept="image/*">
+        <button type="submit" name="action" value="save">Save</button>
+        <button type="submit" name="action" value="publish">Publish last draft</button>
+    </form>
+    
+    <hr>
+    
+    {% for draft in drafts %}
+    <div style="margin-bottom: 20px;">
+        <div>{{ draft[2] | e }}</div>
+        {% if draft[3] and draft[3].lower().endswith(('.png', '.jpg', '.jpeg')) %}
+            <img src="{{ url_for('static', filename='uploads/' + draft[3]) }}" 
+                 style="max-width: 300px; margin-top: 10px;">
+        {% endif %}
+    </div>
+    {% endfor %}
+</body>
+</html>

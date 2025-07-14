@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head><title>Forum (Fixed)</title></head>
+<head>
+    <title>Forum (Secure)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <body>
-  <h2>Welcome, {{ username }}</h2>
-  <a href="/logout">Logout</a>
-  <a href="/view">View Changelog</a>
+    <h2>Welcome, {{ username | e }}</h2>
+    <a href="/logout">Logout</a>
+    <a href="/view">View Changelog</a>
+    <a href="/drafts">Your Drafts</a>
+    <form method="POST">
+        <input name="content" placeholder="Say something...">
+        <button type="submit">Post</button>
+    </form>
+    <hr>
+    <h3>Posts:</h3>
 
-  <form method="POST">
-    <input name="content" placeholder="Say something...">
-    <button type="submit">Post</button>
-  </form>
-
-  <hr>
-  <h3>Posts:</h3>
-  {% for username, content, timestamp in posts %}
-    <div style="margin-bottom: 1em;">
-      <b>{{ username }}</b> at {{ timestamp }}<br>
-      {{ content }}
+    {% for post in posts %}
+    <div style='margin-bottom: 1em;'>
+        <b>{{ post[0] | e }}</b> at {{ post[2] | e }}<br>
+        {{ post[1] | e }}<br>
+        {% if post[3] %}
+            <img src="{{ url_for('static', filename='uploads/' + post[3]) }}" 
+                 style="max-width: 300px; margin-top: 10px;">
+        {% endif %}
     </div>
-  {% endfor %}
+    {% endfor %}
 </body>
 </html>

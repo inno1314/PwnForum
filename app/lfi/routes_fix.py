@@ -16,7 +16,8 @@ def view_file():
     return render_template_string(f"""
         <h2>File Viewer (Fixed)</h2>
         <h3>You can read changelogs by entering version number.</h3>
-        <h3>Versions available: from 1 to 4. Example: ver1.txt</h3>
+        <h3>Versions available: from 1 to 4.</h3>
+        <a href="/forum">Back to main</a>
         <form>
             <input name="file" placeholder="File name" value="{file_path}">
             <button type="submit">Read</button>
