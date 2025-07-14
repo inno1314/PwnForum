@@ -1,7 +1,17 @@
-from flask import Blueprint, request, render_template, redirect, session, url_for
+import os
+from flask import (
+    Blueprint,
+    request,
+    render_template,
+    redirect,
+    session,
+    url_for,
+    send_from_directory,
+)
 from datetime import datetime
 
 from database import ForumDatabase
+from app import UPLOAD_FOLDER
 
 
 forum_bp = Blueprint("forum_fix", __name__, template_folder="../templates/fix")
@@ -27,5 +37,4 @@ def forum():
         "forum.html",
         posts=posts,
         username=username,
-        static_files_path=url_for("static", filename=""),
     )

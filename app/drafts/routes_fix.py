@@ -31,12 +31,13 @@ def is_safe_file(file):
     return True
 
 
-def generate_filename(filename):
+def generate_filename(filename) -> str:
     """Generate secure filename with short UUID prefix"""
     safe_name = secure_filename(filename)
+    prefix = uuid.uuid4().hex[:10]
     if not safe_name:
-        return None
-    return f"{uuid.uuid4().hex[:10]}_{safe_name}"
+        return prefix
+    return f"{prefix}_{safe_name}"
 
 
 @drafts_bp.route("/drafts", methods=["GET", "POST"])

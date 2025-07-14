@@ -44,8 +44,7 @@ def forum():
         <div style='margin-bottom: 1em;'>
             <b>{post_user}</b> at {timestamp}<br>
             {content}<br>
-            {f'<img src="{os.path.join(UPLOAD_FOLDER, file_path)}" style="max-width: 300px;">' if file_path and file_path.lower().endswith((".png", ".jpg", ".jpeg", ".gif")) else ""}
-            {f'<a href="{file_path}" download>Download file</a>' if file_path and not file_path.lower().endswith((".png", ".jpg", ".jpeg", ".gif")) else ""}
+            {f'<img src="{os.path.join(UPLOAD_FOLDER, file_path)}" style="max-width: 300px;">' if file_path else ""}
         </div>
         """
     html += "</body></html>"

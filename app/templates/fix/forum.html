@@ -22,7 +22,7 @@
         <b>{{ post[0] | e }}</b> at {{ post[2] | e }}<br>
         {{ post[1] | e }}<br>
         {% if post[3] %}
-            <img src="{{ url_for('static', filename='uploads/' + post[3]) }}" 
+            <img src="{{ url_for('static', filename='uploads/' ~ post[3]) }}"
                  style="max-width: 300px; margin-top: 10px;">
         {% endif %}
     </div>

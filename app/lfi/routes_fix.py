@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template_string
+from werkzeug.utils import secure_filename
 
 lfi_bp = Blueprint("lfi", __name__)
 
@@ -6,7 +7,7 @@ lfi_bp = Blueprint("lfi", __name__)
 @lfi_bp.route("/view")
 def view_file():
     user_arg = request.args.get("file", "")
-    file_path = user_arg.replace("..", "").replace("/", "").replace("\\", "")
+    file_path = secure_filename(user_arg)
     try:
         with open(f"app/changelogs/{file_path}", "r") as f:
             content = f.read()
